@@ -385,7 +385,7 @@ elements.property(cond, "Update", function(i, x, y, s, n)
 	if (sim.partProperty(i, "tmp2") > 0) then
 		-- Overloaded behavior
 		
-		sim.partCreate(-1, x + math.random(2) - 1, y + math.random(2) - 1, eflm)
+		sim.partCreate(-1, x + math.random(3) - 2, y + math.random(3) - 2, eflm)
 		
 		sim.partProperty(i, "tmp", sim.partProperty(i, "tmp") - 1)
 		
