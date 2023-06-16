@@ -1,6 +1,35 @@
+-- Instructions and license below
+
+-- The folder that lua files will be loaded from.
+local prefix = "./scripts/Alchemagica"
+
+-- The file that the release will be written to.
+local outputFolder = "./scripts/Alchemagica/output/"
+local outputFilename = "Alchemagica.lua"
+local release = false
+
+-- The files will be run in the order shown here.
+-- Place more important files like those containing important functions or variables at the top.
+local luaFiles = {
+	"defs",
+	"brewdata",
+	"elementsdef",
+	"elementsbehavior",
+}
+
 --[[
 	magicloader v1.0 by Rebmiami
 	A simple script designed to improve the workflow of large scripts by allowing code to be split between several files.
+
+	HOW TO USE:
+	- Place magicloader.lua in the folder you wish to develop your script in
+	- Change 'prefix' to the relative path to this folder from your TPT data folder
+	- Add all files to be loaded to 'luaFiles' in the order they should be run (they are combined into one chunk)
+	    - Specify only the subfolder and file name; exclude the .lua extension
+	- Open TPT and open the script manager, then scroll down and run [yourfolder]/magicloader.lua
+
+	- When you are ready to release your script, specify 'outputFolder' and 'outputFilename', then set 'release' to true
+		- A file will be outputted to the specified location. Upload this to the script browser.
 	
 	FEATURES:
 	- Loads and concatenates several .lua files and runs them as if they were a single script.
@@ -39,23 +68,6 @@
 		For more information, please refer to <https://unlicense.org>
 --]]
 
--- The folder that lua files will be loaded from.
-local prefix = "./scripts/Alchemagica"
-
--- The file that the release will be written to.
-local outputFolder = "./scripts/Alchemagica/output/"
-local outputFilename = "Alchemagica.lua"
-local release = true
-
--- The files will be run in the order shown here.
--- Place more important files like those containing important functions or variables at the top.
-local luaFiles = {
-	"defs",
-	"brewdata",
-	"elementsdef",
-	"elementsbehavior",
-}
-
 local luaFileContents = {
 
 }
@@ -88,7 +100,6 @@ if release then
 	f:write(script)
 	f:close()
 end
-
 
 -- Custom error handling
 local function handleError(err)
