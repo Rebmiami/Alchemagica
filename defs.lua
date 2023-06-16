@@ -97,3 +97,18 @@ local function isAlchTransmutable(i)
 	end
 	return -1
 end
+
+-- For the purposes of this mod, metals are defined as materials that conduct electricity, are solid, and melt into lava.
+function IsMetal(i)
+	local melt = elements.property(sim.partProperty(i, "type"), "HighTemperatureTransition") == elem.DEFAULT_PT_LAVA;
+	local conduct = bit.band(elements.property(sim.partProperty(i, "type"), "Properties"), elements.PROP_CONDUCTS) ~= 0;
+	local solid = elements.property(sim.partProperty(i, "type"), "Loss") == 0
+	
+	return melt and conduct and solid;
+end
+
+function ConvertToConduit(i)
+	sim.partProperty(i, "type", cond)
+	sim.partProperty(i, "life", 30)
+	sim.partProperty(i, "tmp", 0)
+end

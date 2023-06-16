@@ -11,10 +11,18 @@ local release = false
 -- The files will be run in the order shown here.
 -- Place more important files like those containing important functions or variables at the top.
 local luaFiles = {
+	"elementsdef",
 	"defs",
 	"brewdata",
-	"elementsdef",
-	"elementsbehavior",
+
+	"elements/alch",
+	"elements/eflm",
+	"elements/catl",
+	"elements/cond",
+	"elements/mana",
+	"elements/crcy",
+	"elements/brew",
+	"elements/scnv",
 }
 
 --[[
@@ -80,6 +88,10 @@ end
 
 local function readFile(name)
 	local f = io.open(prefix .. "/" .. name .. ".lua", "r")
+	if not f then
+		print2("[magicloader] Failed to read file " .. prefix .. "/" .. name .. ".lua", 255, 255, 0)
+		return ""
+	end
 	local text = f:read("*all")
 	f:close()
 	return text
