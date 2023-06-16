@@ -12,6 +12,8 @@
 --   end }))
 -- end
 
+scrint()
+
 -- Check if the current snapshot supports tmp3/tmp4
 -- Otherwise, use pavg0/1
 local tmp3 = "pavg0"
@@ -20,8 +22,6 @@ if sim.FIELD_TMP3 then -- Returns nil if tmp3 is not part of the current snapsho
 	tmp3 = "tmp3"
 	tmp4 = "tmp4"
 end
-
-
 
 -- Utility functions
 
@@ -100,7 +100,6 @@ local function isAlchTransmutable(i)
 	return -1
 end
 
-
 -- Interpolates between colors depending on TMP and TMP2
 -- 1. Base state
 -- 2. Pure state
@@ -162,7 +161,6 @@ local function isBrewable(i)
 	end
 	return false
 end
-
 -- Elements
 local alch = elements.allocate("alchmag", "ALCH") -- Alchemical powder
 local eflm = elements.allocate("alchmag", "EFLM") -- Magic flame
@@ -175,6 +173,7 @@ local scnv = elements.allocate("alchmag", "SCNV") -- Special converted
 local crcy = elements.allocate("alchmag", "CRCY") -- Crazy crystal
 local crlx = elements.allocate("alchmag", "CRLX") -- Crazy lux
 local crpd = elements.allocate("alchmag", "CRPD") -- Crazy powder
+
 
 -- Alchemical powder
 elements.element(alch, elements.element(elements.DEFAULT_PT_DUST))
